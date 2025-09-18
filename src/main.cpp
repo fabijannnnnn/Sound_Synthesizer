@@ -1,5 +1,4 @@
 #include <iostream>
-#include <thread>
 #include <atomic>
 #include <csignal>
 #include <memory>
