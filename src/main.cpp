@@ -7,7 +7,7 @@
 
 std::atomic<bool> running{true};
 
-// Signal handler for clean shutdown
+// signal handler
 void signalHandler(int signal) {
     if (signal == SIGINT) {
         running = false;
@@ -16,27 +16,25 @@ void signalHandler(int signal) {
 }
 
 int main() {
-    // Set up signal handling
+    // set up signal handling
     std::signal(SIGINT, signalHandler);
 
     try {
-        // Create and initialize the sound handler
         SoundHandler audio;
 
-        // Create an oscillator
         Oscillator osc(audio.getSampleRate());
         osc.setWaveform(Oscillator::Waveform::SINE);
         osc.setFrequency(440.0f);  // A4 note
         osc.setAmplitude(0.3f);
 
-        // Set up the audio callback
+        // set up the audio callback
         audio.setAudioCallback([&osc](float* outputBuffer, unsigned long framesPerBuffer) {
             for (unsigned long i = 0; i < framesPerBuffer; i++) {
                 outputBuffer[i] = osc.process();
             }
         });
 
-        // Start the audio stream
+        // start the audio stream
         if (!audio.startStream()) {
             std::cerr << "Failed to start audio stream" << std::endl;
             return 1;
@@ -45,7 +43,6 @@ int main() {
         std::cout << "Sound synthesizer running. Press Ctrl+C to quit." << std::endl;
         std::cout << "Current note: A4 (440 Hz)" << std::endl;
 
-        // Simple command loop
         while (running) {
             std::cout << "\nOptions:"
                       << "\n  q - Quit"
@@ -81,11 +78,11 @@ int main() {
                     std::cout << "Waveform: Triangle" << std::endl;
                     break;
                 case '+':
-                    osc += 50.0f;  // Using overloaded operator
+                    osc += 50.0f;  // operator overload
                     std::cout << "Frequency: " << osc.getFrequency() << " Hz" << std::endl;
                     break;
                 case '-':
-                    osc -= 50.0f;  // Using overloaded operator
+                    osc -= 50.0f;  // operator overload
                     std::cout << "Frequency: " << osc.getFrequency() << " Hz" << std::endl;
                     break;
                 default:
@@ -93,8 +90,7 @@ int main() {
             }
         }
 
-        // Clean up
-        audio.stopStream();
+        audio.stopStream(); // cleanup
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;

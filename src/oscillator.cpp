@@ -27,7 +27,7 @@ float Oscillator::process() {
             break;
     }
 
-    // Update phase for next sample
+    // update phase for next sample
     phase_ += frequency_ / sampleRate_;
     if (phase_ >= 1.0f) {
         phase_ -= 1.0f;
@@ -37,7 +37,7 @@ float Oscillator::process() {
 }
 
 float Oscillator::generateSine() {
-    return std::sin(2.0f * M_PI * phase_);
+    return std::sin(2.0f * M_PI * phase_); // pi number
 }
 
 float Oscillator::generateSquare() {
@@ -53,7 +53,7 @@ float Oscillator::generateTriangle() {
     return 2.0f * (std::fabs(value) - 0.5f);
 }
 
-// Global operator overloads
+// operator overloads
 Oscillator operator+(Oscillator osc, float frequency) {
     osc.setFrequency(osc.getFrequency() + frequency);
     return osc;

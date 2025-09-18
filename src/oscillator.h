@@ -14,19 +14,18 @@ public:
 
     Oscillator(float sampleRate = 44100.0f);
 
-    // Set waveform type
+    // waveform type
     void setWaveform(Waveform waveform) { waveform_ = waveform; }
 
-    // Set frequency in Hz
+    // frequency in Hz
     void setFrequency(float frequency) { frequency_ = frequency; }
 
-    // Set amplitude (0.0 to 1.0)
+    // amplitude (0.0 to 1.0)
     void setAmplitude(float amplitude) { amplitude_ = amplitude; }
 
-    // Generate the next sample
+    // generate the next sample
     float process();
 
-    // Operator overloading for fun!
     Oscillator& operator+=(float frequency) {
         frequency_ += frequency;
         return *this;
@@ -48,14 +47,13 @@ private:
     float amplitude_;
     Waveform waveform_;
 
-    // Waveform generation functions
+    // waveform functions
     float generateSine();
     float generateSquare();
     float generateSaw();
     float generateTriangle();
 };
 
-// Global operator overloads for Oscillator
 Oscillator operator+(Oscillator osc, float frequency);
 Oscillator operator-(Oscillator osc, float frequency);
 

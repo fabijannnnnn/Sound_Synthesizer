@@ -34,20 +34,20 @@ bool SoundHandler::initialize(int sampleRate, int framesPerBuffer) {
         return false;
     }
 
-    outputParameters.channelCount = 1;  // Mono output
+    outputParameters.channelCount = 1;  // mono / stereo
     outputParameters.sampleFormat = paFloat32;
     outputParameters.suggestedLatency = Pa_GetDeviceInfo(outputParameters.device)->defaultLowOutputLatency;
     outputParameters.hostApiSpecificStreamInfo = nullptr;
 
     PaError err = Pa_OpenStream(
             &stream_,
-            nullptr,  // No input
+            nullptr,  // no input
             &outputParameters,
             sampleRate_,
             framesPerBuffer_,
-            paClipOff,  // Don't clip samples
+            paClipOff,  // don't clip samples
             &SoundHandler::paCallback,
-            this  // Pass 'this' as user data
+            this  // pass 'this' as user data
     );
 
     if (err != paNoError) {
@@ -97,9 +97,9 @@ int SoundHandler::paCallback(const void* inputBuffer, void* outputBuffer,
                                  const PaStreamCallbackTimeInfo* timeInfo,
                                  PaStreamCallbackFlags statusFlags,
                                  void* userData) {
-    (void)inputBuffer;  // Unused
-    (void)timeInfo;     // Unused
-    (void)statusFlags;  // Unused
+    (void)inputBuffer;  // unused
+    (void)timeInfo;     // unused
+    (void)statusFlags;  // unused
 
     auto* handler = static_cast<SoundHandler*>(userData);
     auto* out = static_cast<float*>(outputBuffer);
@@ -108,7 +108,7 @@ int SoundHandler::paCallback(const void* inputBuffer, void* outputBuffer,
     if (handler->audioCallback_) {
         handler->audioCallback_(out, framesPerBuffer);
     } else {
-        // Generate silence if no callback is set
+        // generate silence if no callback set
         for (unsigned long i = 0; i < framesPerBuffer; i++) {
             out[i] = 0.0f;
         }
