@@ -1,0 +1,8 @@
+//
+// Created by fabijannnnnn . on 17/09/2025.
+//
+
+#ifndef SYNTHESIZER_SOUND_HANDLER_H
+#define SYNTHESIZER_SOUND_HANDLER_H
+
+#endif //SYNTHESIZER_SOUND_HANDLER_H
