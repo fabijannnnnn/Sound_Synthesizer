@@ -1,7 +1,6 @@
 #include <iostream>
 #include <atomic>
 #include <csignal>
-#include <memory>
 #include "sound_handler.h"
 #include "oscillator.h"
 
