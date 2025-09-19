@@ -17,16 +17,14 @@ A simple single channel sound synthesizer implemented in C++ with support for mu
 
 ## Installation
 
-1. Install dependencies using Homebrew:
+1. Install dependencies 
    ```bash
-   brew install portaudio
+   TODO
    ```
 
 2. Build the project:
    ```bash
-   mkdir -p build && cd build
-   cmake ..
-   make
+   TODO
    ```
 
 ## Usage
