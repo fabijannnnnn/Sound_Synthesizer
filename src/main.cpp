@@ -10,7 +10,7 @@ std::atomic<bool> running{true};
 void signalHandler(int signal) {
     if (signal == SIGINT) {
         running = false;
-        std::cout << "\nReceived shutdown signal. Cleaning up..." << std::endl;
+        std::cout << "\nReceived shutdown signal.q" << std::endl;
     }
 }
 
@@ -77,11 +77,11 @@ int main() {
                     std::cout << "Waveform: Triangle" << std::endl;
                     break;
                 case '+':
-                    osc += 50.0f;  // operator overload
+                    osc += 50.0f;  // overloaded operator
                     std::cout << "Frequency: " << osc.getFrequency() << " Hz" << std::endl;
                     break;
                 case '-':
-                    osc -= 50.0f;  // operator overload
+                    osc -= 50.0f;  // overloaded operator
                     std::cout << "Frequency: " << osc.getFrequency() << " Hz" << std::endl;
                     break;
                 default:
@@ -89,7 +89,7 @@ int main() {
             }
         }
 
-        audio.stopStream(); // cleanup
+        audio.stopStream();
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;

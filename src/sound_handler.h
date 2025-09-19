@@ -19,10 +19,8 @@ public:
     SoundHandler(const SoundHandler&) = delete;
     SoundHandler& operator=(const SoundHandler&) = delete;
 
-    // initialize the audio system
     bool initialize(int sampleRate = 44100, int framesPerBuffer = 256);
 
-    // start / stop the audio stream
     bool startStream();
     bool stopStream();
 
